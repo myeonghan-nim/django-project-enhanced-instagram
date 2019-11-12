@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+{% load socialaccount %}
+
+{% block body %}
+  <div class="jumbotron bg-white m-5">
+    <div class="container">
+
+      <form action="" method="post" class="m-3">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="d-flex flex-row-reverse">
+          {% if request.resolver_match.url_name == 'login' %}
+            <input type="submit" class="btn btn-primary" value="login">
+          {% else %}
+            <input type="submit" class="btn btn-primary" value="signup">
+          {% endif %}
+        </div>
+      </form>
+
+      <a href="{% provider_login_url 'kakao' %}" class="d-flex justify-content-center">
+        <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small_ov.png" width="32px" height="32px">
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

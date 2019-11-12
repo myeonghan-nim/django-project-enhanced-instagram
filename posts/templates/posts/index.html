@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load bootstrap_pagination %}
+
+{% block body %}
+
+  <div class="jumbotron bg-light">
+    <div class="container">
+      {% if request.resolver_match.url_name == 'index' %}
+        <h2 class="display-4">#Instagram</h2>
+      {% elif request.resolver_match.url_name == 'hashtags' %}
+        <h2 class="display-4">#Hashtags</h2>
+      {% else %}
+        <h2 class="display-4">#Search</h2>
+      {% endif %}
+      <p class="lead">게시물 {{posts | length}}</p>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center">
+    {% for post in posts %}
+      <div class="card col-md-3 col-12 m-3 p-1">
+        {% include 'posts/_post.html' %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="d-flex justify-content-center">
+    {% bootstrap_paginate posts %}
+  </div>
+
+{% endblock %}

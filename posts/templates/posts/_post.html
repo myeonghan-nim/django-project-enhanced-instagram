@@ -1,0 +1,65 @@
+{% load make_link %}
+{% load bootstrap4 %}
+
+<a href="" class="m-3" data-toggle="modal" data-target="#modal{{post.id}}">
+  <img src="{{post.image.url}}" class="card-img-top">
+</a>
+
+<div class="modal fade" id="modal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="row">
+
+        <img src="{{post.image.url}}" alt="">
+
+        <div class="col-5">
+
+          <div class="modal-header">
+
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              <a href="{% url 'accounts:userpage' post.user_id %}" class="text-dark">{{post.user}}</a>
+              {% if user != post.user %}
+                {% if user in user_info.followers.all %}
+                  · <a href="{% url 'accounts:follow' post.user_id %}" class="text-decoration-none text-danger" style="font-size: small;">언팔로우</a>
+                {% else %}
+                  · <a href="{% url 'accounts:follow' post.user_id %}" class="text-decoration-none text-primary" style="font-size: small;">팔로우</a>
+                {% endif %}
+              {% endif %}
+            </h5>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+            {{post|hashtag_link|safe}}
+          </div>
+
+          <hr>
+
+          <form action="" method="POST" class="d-inline">
+            {% bootstrap_form comment_form %}
+            <input type="submit" value="submit" class="btn btn-sm btn-primary">
+          </form>
+
+          <hr>
+
+          {% for comment in post.comment_set.all %}
+            <p>{{comment.user}} : {{comment.content}}</p>
+          {% empty %}
+            <p class="lead">첫 번째 댓글을 달아주세요!</p>
+          {% endfor %}
+
+          <div class="modal-footer">
+            <a href="{% url 'posts:update' post.id %}" class="btn btn-sm btn-warning">수정</a>
+            <a href="{% url 'posts:delete' post.id %}" class="btn btn-sm btn-danger">삭제</a>
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
