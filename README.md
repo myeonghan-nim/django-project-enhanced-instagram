@@ -24,7 +24,7 @@ SITE_ID = 1
 
 # urls.py
 urlpatterns = [
-    path('account/', include('allauth.urls')),
+    path('auth/', include('allauth.urls')),
 ]
 ```
 
