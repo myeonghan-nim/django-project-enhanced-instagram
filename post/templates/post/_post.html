@@ -56,12 +56,34 @@
             </button>
           </div>
           <div class="modal-body">{{post|hashtag_link|safe}}</div>
-          <form action="" method="POST" class="d-inline">
+          <div class="d-flex flex-row-reverse">
+            <p class="text-secondary">Written at {{post.created_at}}</p>
+          </div>
+          <hr />
+          <form action="{% url 'post:comment_create' post.id %}" method="POST" class="d-inline">
             {% csrf_token %}
             {% bootstrap_form comment_form %}
             <input type="submit" value="Submit" class="btn btn-sm btn-primary">
           </form>
           <hr />
+          {% for post_id, comments in comments.items %}
+            {% if post_id == post.id %}
+              {% for comment in comments %}
+                <div class="row col-12 d-flex justify-content-between">
+                  <p>{{comment.user.username}}: {{comment.content}}</p>
+                  {% if comment.user == request.user %}
+                    <form action="{% url 'post:comment_delete' post_id=post.id comment_id=comment.id %}" method="POST" class="ml-5">
+                      {% csrf_token %}
+                      <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+                    </form>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+          {% if post.id not in comments.keys %}
+            <p>Please leave the first comment.</p>
+          {% endif %}
           <div class="modal-footer">
             <a
               href="{% url 'post:update' post.id %}"
