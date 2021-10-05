@@ -31,11 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.kakao',
-    'user',
+    'account',
     'post',
     'imagekit',
     'bootstrap4',
@@ -129,15 +125,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'user.User'
-LOGIN_URL = '/user/login/'
+AUTH_USER_MODEL = 'account.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR)
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SITE_ID = 1
