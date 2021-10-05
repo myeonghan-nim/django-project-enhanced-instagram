@@ -21,7 +21,7 @@ def signup(request):
         if form.is_valid():
             form.save()
 
-            return redirect('auth:login')
+            return redirect('user:login')
     else:
         form = CustomUserCreationForm()
 
@@ -29,7 +29,7 @@ def signup(request):
         'form': form,
     }
 
-    return render(request, 'auth/form.html', context)
+    return render(request, 'user/form.html', context)
 
 
 def update(request):
@@ -48,7 +48,7 @@ def update(request):
         'form': form,
     }
 
-    return render(request, 'auth/form.html', context)
+    return render(request, 'user/form.html', context)
 
 
 def password(request):
@@ -68,7 +68,7 @@ def password(request):
         'form': form,
     }
 
-    return render(request, 'auth/form.html', context)
+    return render(request, 'user/form.html', context)
 
 
 def delete(request, user_id):
@@ -98,14 +98,14 @@ def login(request):
         'form': form,
     }
 
-    return render(request, 'auth/form.html', context)
+    return render(request, 'user/form.html', context)
 
 
 def logout(request):
 
     auth_logout(request)
 
-    return redirect('auth:login')
+    return redirect('user:login')
 
 
 def userpage(request, user_id):
@@ -116,7 +116,7 @@ def userpage(request, user_id):
         'user_info': user_info,
     }
 
-    return render(request, 'auth/userpage.html', context)
+    return render(request, 'user/userpage.html', context)
 
 
 def profile(request):
@@ -127,7 +127,7 @@ def profile(request):
         'user_info': user_info,
     }
 
-    return render(request, 'auth/userpage.html', context)
+    return render(request, 'user/userpage.html', context)
 
 
 @login_required
@@ -142,4 +142,4 @@ def follow(request, user_id):
         else:
             you.followers.add(me)
 
-    return redirect('auth:userpage', user_id)
+    return redirect('user:userpage', user_id)

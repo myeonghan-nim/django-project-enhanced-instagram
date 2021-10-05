@@ -17,12 +17,12 @@
           <div class="modal-header">
 
             <h5 class="modal-title" id="exampleModalCenterTitle">
-              <a href="{% url 'auth:userpage' post.user_id %}" class="text-dark">{{post.user}}</a>
+              <a href="{% url 'user:userpage' post.user_id %}" class="text-dark">{{post.user}}</a>
               {% if user != post.user %}
                 {% if user in user_info.followers.all %}
-                  · <a href="{% url 'auth:follow' post.user_id %}" class="text-decoration-none text-danger" style="font-size: small;">언팔로우</a>
+                  · <a href="{% url 'user:follow' post.user_id %}" class="text-decoration-none text-danger" style="font-size: small;">언팔로우</a>
                 {% else %}
-                  · <a href="{% url 'auth:follow' post.user_id %}" class="text-decoration-none text-primary" style="font-size: small;">팔로우</a>
+                  · <a href="{% url 'user:follow' post.user_id %}" class="text-decoration-none text-primary" style="font-size: small;">팔로우</a>
                 {% endif %}
               {% endif %}
             </h5>
