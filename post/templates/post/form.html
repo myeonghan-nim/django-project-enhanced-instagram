@@ -1,25 +1,20 @@
 {% extends 'base.html' %}
-
 {% load bootstrap4 %}
 
 {% block body %}
-
   <div class="jumbotron bg-white m-5">
     <div class="container">
-
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         <div class="d-flex flex-row-reverse">
           {% if request.resolver_match.url_name == 'create' %}
-            <input type="submit" class="btn btn-primary" value="create">
+            <input type="submit" class="btn btn-primary" value="Create" />
           {% else %}
-            <input type="submit" class="btn btn-primary" value="update">
+            <input type="submit" class="btn btn-primary" value="Update" />
           {% endif %}
         </div>
       </form>
-      
     </div>
   </div>
-  
 {% endblock %}

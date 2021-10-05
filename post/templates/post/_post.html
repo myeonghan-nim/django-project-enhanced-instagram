@@ -1,64 +1,80 @@
-{% load make_link %}
 {% load bootstrap4 %}
+{% load make_link %}
 
 <a href="" class="m-3" data-toggle="modal" data-target="#modal{{post.id}}">
-  <img src="{{post.image.url}}" class="card-img-top">
+  <img src="{{post.image.url}}" class="card-img-top" />
 </a>
-
-<div class="modal fade" id="modal{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div
+  class="modal fade py-5"
+  id="modal{{post.id}}"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
-      <div class="row">
-
-        <img src="{{post.image.url}}" alt="">
-
-        <div class="col-5">
-
+      <div class="row mx-1">
+        <div class="col-6 d-flex">
+          <img src="{{post.image.url}}" alt="" class="mx-auto justify-content-center align-self-center" />
+        </div>
+        <div class="col-6">
           <div class="modal-header">
-
             <h5 class="modal-title" id="exampleModalCenterTitle">
-              <a href="{% url 'account:userpage' post.user_id %}" class="text-dark">{{post.user}}</a>
+              <a
+                href="{% url 'account:userpage' post.user_id %}"
+                class="text-dark"
+                >{{post.user}}</a
+              >
               {% if user != post.user %}
                 {% if user in user_info.followers.all %}
-                  · <a href="{% url 'account:follow' post.user_id %}" class="text-decoration-none text-danger" style="font-size: small;">언팔로우</a>
+                  ·
+                  <a
+                    href="{% url 'account:follow' post.user_id %}"
+                    class="text-decoration-none text-danger"
+                    style="font-size: small"
+                    >Unfollow</a
+                  >
                 {% else %}
-                  · <a href="{% url 'account:follow' post.user_id %}" class="text-decoration-none text-primary" style="font-size: small;">팔로우</a>
+                  ·
+                  <a
+                    href="{% url 'account:follow' post.user_id %}"
+                    class="text-decoration-none text-primary"
+                    style="font-size: small"
+                    >Follow</a
+                  >
                 {% endif %}
               {% endif %}
             </h5>
-
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
-
           </div>
-
-          <div class="modal-body">
-            {{post|hashtag_link|safe}}
-          </div>
-
-          <hr>
-
+          <div class="modal-body">{{post|hashtag_link|safe}}</div>
           <form action="" method="POST" class="d-inline">
+            {% csrf_token %}
             {% bootstrap_form comment_form %}
-            <input type="submit" value="submit" class="btn btn-sm btn-primary">
+            <input type="submit" value="Submit" class="btn btn-sm btn-primary">
           </form>
-
-          <hr>
-
-          {% for comment in post.comment_set.all %}
-            <p>{{comment.user}} : {{comment.content}}</p>
-          {% empty %}
-            <p class="lead">첫 번째 댓글을 달아주세요!</p>
-          {% endfor %}
-
+          <hr />
           <div class="modal-footer">
-            <a href="{% url 'post:update' post.id %}" class="btn btn-sm btn-warning">수정</a>
-            <a href="{% url 'post:delete' post.id %}" class="btn btn-sm btn-danger">삭제</a>
+            <a
+              href="{% url 'post:update' post.id %}"
+              class="btn btn-sm btn-warning"
+              >Edit</a
+            >
+            <a
+              href="{% url 'post:delete' post.id %}"
+              class="btn btn-sm btn-danger"
+              >Delete</a
+            >
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
