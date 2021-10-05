@@ -59,12 +59,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'insta.urls'
+ROOT_URLCONF = 'instagram.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'insta', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'instagram', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'insta.wsgi.application'
+WSGI_APPLICATION = 'instagram.wsgi.application'
 
 
 # Database
