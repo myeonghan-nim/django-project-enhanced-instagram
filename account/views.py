@@ -30,7 +30,7 @@ def update(request):
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('post:index')
+            return redirect('account:userpage', user_id=request.user.id)
     else:
         form = CustomUserChangeForm(instance=request.user)
 
@@ -47,7 +47,7 @@ def password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('post:index')
+            return redirect('account:userpage', user_id=request.user.id)
     else:
         form = PasswordChangeForm(request.user)
 
