@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from accounts.models import User
+from account.models import User
 
 from .forms import PostForm, CommentForm
 from .models import Post, HashTag, Comment
@@ -71,7 +71,7 @@ def create(request):
             return redirect('posts:index')
     else:
         form = PostForm()
-    
+
     context = {
         'form': form,
     }
@@ -95,7 +95,8 @@ def update(request, post_id):
 
                 for word in post.content.split():
                     if word.startswith('#'):
-                        hashtag = HashTag.objects.get_or_create(content=word)[0]
+                        hashtag = HashTag.objects.get_or_create(content=word)[
+                            0]
                         post.hashtags.add(hashtag)
 
                 return redirect('posts:index')
@@ -105,9 +106,9 @@ def update(request, post_id):
         context = {
             'form': form,
         }
-        
+
         return render(request, 'posts/forms.html', context)
-    
+
     return redirect('posts:index')
 
 
@@ -118,13 +119,13 @@ def delete(request, post_id):
 
     if post.user == request.user:
         post.delete()
-    
+
     return redirect('posts:index')
 
 
 @login_required
 def like(request, post_id):
-    
+
     post = get_object_or_404(Post, id=post_id)
     user = request.user
 
@@ -132,7 +133,7 @@ def like(request, post_id):
         post.like_users.remove(user)
     else:
         post.like_users.add(user)
-    
+
     return redirect('posts:index')
 
 

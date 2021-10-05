@@ -24,7 +24,7 @@ SITE_ID = 1
 
 # urls.py
 urlpatterns = [
-    path('accounts/', include('allauth.urls')),
+    path('account/', include('allauth.urls')),
 ]
 ```
 
@@ -39,4 +39,3 @@ from django.contrib.auth import update_session_auth_hash
 ```python
 from django.db.models import Q
 ```
-

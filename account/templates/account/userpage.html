@@ -17,22 +17,22 @@
 
           {% if user.is_authenticated and user != user_info %}
             {% if user in user_info.followers.all %}
-              <a href="{% url 'accounts:follow' user_info.id %}" class="btn btn-danger btn-sm mx-2">팔로우 취소</a>
+              <a href="{% url 'account:follow' user_info.id %}" class="btn btn-danger btn-sm mx-2">팔로우 취소</a>
             {% else %}
-              <a href="{% url 'accounts:follow' user_info.id %}" class="btn btn-primary btn-sm mx-2">팔로우 하기</a>
+              <a href="{% url 'account:follow' user_info.id %}" class="btn btn-primary btn-sm mx-2">팔로우 하기</a>
             {% endif %}
           {% elif user.is_authenticated and user == user_info %}
             <div class="row">
-              <a href="{% url 'accounts:update' %}" class="btn btn-primary btn-sm m-1">정보 수정</a>
-              <a href="{% url 'accounts:password' %}" class="btn btn-primary btn-sm m-1">비밀번호 변경</a>
-              <form action="{% url 'accounts:delete' user_info.id %}" method="POST">
+              <a href="{% url 'account:update' %}" class="btn btn-primary btn-sm m-1">정보 수정</a>
+              <a href="{% url 'account:password' %}" class="btn btn-primary btn-sm m-1">비밀번호 변경</a>
+              <form action="{% url 'account:delete' user_info.id %}" method="POST">
                 {% csrf_token %}
                 <input type="submit" class="btn btn-danger btn-sm m-1" value="회원 탈퇴">
               </form>
             </div>
           {% endif %}
 
-          <a href="{% url 'accounts:logout' %}" class="text-dark"><i class="fas fa-cog"></i></a>
+          <a href="{% url 'account:logout' %}" class="text-dark"><i class="fas fa-cog"></i></a>
 
         </div>
 
@@ -61,7 +61,7 @@
         </div>
       </div>
     {% endif %}
-    
+
   </div>
 
 {% endblock %}

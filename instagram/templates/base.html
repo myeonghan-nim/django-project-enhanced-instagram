@@ -26,7 +26,7 @@
 
     <div class="container">
       <ul class="nav align-items-center justify-content-between">
-        
+
         <li class="nav-item">
           <a class="navbar-brand text-dark" href="{% url 'posts:index' %}">
             <img src="{% static 'posts/Instagram.JPG'%}" alt="">
@@ -43,10 +43,10 @@
         <li class="nav-item">
           <a href="{% url 'posts:create' %}" class="mx-1 text-dark"><i class="far fa-compass"></i></a>
           {% if user.is_authenticated %}
-            <a href="{% url 'accounts:userpage' user.id %}" class="mx-1 text-dark"><i class="far fa-user"></i></a>
+            <a href="{% url 'account:userpage' user.id %}" class="mx-1 text-dark"><i class="far fa-user"></i></a>
           {% else %}
-            <a href="{% url 'accounts:signup' %}" class="mx-1 text-dark"><i class="fas fa-user-plus"></i></a>
-            <a href="{% url 'accounts:login' %}" class="mx-1 text-dark"><i class="fas fa-sign-in-alt"></i></a>
+            <a href="{% url 'account:signup' %}" class="mx-1 text-dark"><i class="fas fa-user-plus"></i></a>
+            <a href="{% url 'account:login' %}" class="mx-1 text-dark"><i class="fas fa-sign-in-alt"></i></a>
           {% endif %}
         </li>
 

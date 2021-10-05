@@ -21,7 +21,7 @@ def signup(request):
         if form.is_valid():
             form.save()
 
-            return redirect('accounts:login')
+            return redirect('account:login')
     else:
         form = CustomUserCreationForm()
 
@@ -29,7 +29,7 @@ def signup(request):
         'form': form,
     }
 
-    return render(request, 'accounts/form.html', context)
+    return render(request, 'account/form.html', context)
 
 
 def update(request):
@@ -39,16 +39,16 @@ def update(request):
 
         if form.is_valid():
             form.save()
-        
+
             return redirect('posts:index')
     else:
         form = CustomUserChangeForm(instance=request.user)
-    
+
     context = {
         'form': form,
     }
 
-    return render(request, 'accounts/form.html', context)
+    return render(request, 'account/form.html', context)
 
 
 def password(request):
@@ -68,7 +68,7 @@ def password(request):
         'form': form,
     }
 
-    return render(request, 'accounts/form.html', context)
+    return render(request, 'account/form.html', context)
 
 
 def delete(request, user_id):
@@ -98,14 +98,14 @@ def login(request):
         'form': form,
     }
 
-    return render(request, 'accounts/form.html', context)
+    return render(request, 'account/form.html', context)
 
 
 def logout(request):
 
     auth_logout(request)
 
-    return redirect('accounts:login')
+    return redirect('account:login')
 
 
 def userpage(request, user_id):
@@ -116,7 +116,7 @@ def userpage(request, user_id):
         'user_info': user_info,
     }
 
-    return render(request, 'accounts/userpage.html', context)
+    return render(request, 'account/userpage.html', context)
 
 
 def profile(request):
@@ -127,7 +127,7 @@ def profile(request):
         'user_info': user_info,
     }
 
-    return render(request, 'accounts/userpage.html', context)
+    return render(request, 'account/userpage.html', context)
 
 
 @login_required
@@ -142,4 +142,4 @@ def follow(request, user_id):
         else:
             you.followers.add(me)
 
-    return redirect('accounts:userpage', user_id)
+    return redirect('account:userpage', user_id)
