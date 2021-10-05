@@ -48,10 +48,10 @@
           <li class="nav-item">
             <a href="{% url 'post:create' %}" class="mx-1 text-dark">Post</a>
             {% if user.is_authenticated %}
-              <a href="{% url 'user:userpage' user.id %}" class="mx-1 text-dark">My Page</a>
+              <a href="{% url 'account:userpage' user.id %}" class="mx-1 text-dark">My Page</a>
             {% else %}
-              <a href="{% url 'user:signup' %}" class="mx-1 text-dark">Signup</a>
-              <a href="{% url 'user:login' %}" class="mx-1 text-dark">Login</a>
+              <a href="{% url 'account:signup' %}" class="mx-1 text-dark">Signup</a>
+              <a href="{% url 'account:login' %}" class="mx-1 text-dark">Login</a>
             {% endif %}
           </li>
         </ul>
