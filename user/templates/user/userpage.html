@@ -51,7 +51,7 @@
     {% if user_info.post_set.all %}
       <div class="row col-12">
         {% for post in user_info.post_set.all %}
-          {% include 'posts/_post.html' %}
+          {% include 'post/_post.html' %}
         {% endfor %}
       </div>
     {% else %}

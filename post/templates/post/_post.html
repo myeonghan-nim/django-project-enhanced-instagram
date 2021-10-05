@@ -53,8 +53,8 @@
           {% endfor %}
 
           <div class="modal-footer">
-            <a href="{% url 'posts:update' post.id %}" class="btn btn-sm btn-warning">수정</a>
-            <a href="{% url 'posts:delete' post.id %}" class="btn btn-sm btn-danger">삭제</a>
+            <a href="{% url 'post:update' post.id %}" class="btn btn-sm btn-warning">수정</a>
+            <a href="{% url 'post:delete' post.id %}" class="btn btn-sm btn-danger">삭제</a>
           </div>
 
         </div>

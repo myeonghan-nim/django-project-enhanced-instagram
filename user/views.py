@@ -40,7 +40,7 @@ def update(request):
         if form.is_valid():
             form.save()
 
-            return redirect('posts:index')
+            return redirect('post:index')
     else:
         form = CustomUserChangeForm(instance=request.user)
 
@@ -60,7 +60,7 @@ def password(request):
             form.save()
             update_session_auth_hash(request, form.user)
 
-            return redirect('posts:index')
+            return redirect('post:index')
     else:
         form = PasswordChangeForm(request.user)
 
@@ -79,7 +79,7 @@ def delete(request, user_id):
     if user == user_info:
         user.delete()
 
-    return redirect('posts:index')
+    return redirect('post:index')
 
 
 def login(request):
@@ -90,7 +90,7 @@ def login(request):
         if form.is_valid():
             auth_login(request, form.get_user())
 
-            return redirect('posts:index')
+            return redirect('post:index')
     else:
         form = AuthenticationForm()
 

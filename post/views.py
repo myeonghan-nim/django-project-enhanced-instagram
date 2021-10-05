@@ -31,7 +31,7 @@ def index(request):
         'comment_form': comment_form,
     }
 
-    return render(request, 'posts/index.html', context)
+    return render(request, 'post/index.html', context)
 
 
 def hashtags(request, hashtag_id):
@@ -48,7 +48,7 @@ def hashtags(request, hashtag_id):
         'comment_form': comment_form,
     }
 
-    return render(request, 'posts/index.html', context)
+    return render(request, 'post/index.html', context)
 
 
 @login_required
@@ -68,7 +68,7 @@ def create(request):
                     hashtag = HashTag.objects.get_or_create(content=word)[0]
                     post.hashtags.add(hashtag)
 
-            return redirect('posts:index')
+            return redirect('post:index')
     else:
         form = PostForm()
 
@@ -76,7 +76,7 @@ def create(request):
         'form': form,
     }
 
-    return render(request, 'posts/forms.html', context)
+    return render(request, 'post/forms.html', context)
 
 
 @login_required
@@ -99,7 +99,7 @@ def update(request, post_id):
                             0]
                         post.hashtags.add(hashtag)
 
-                return redirect('posts:index')
+                return redirect('post:index')
         else:
             form = PostForm(instance=post)
 
@@ -107,9 +107,9 @@ def update(request, post_id):
             'form': form,
         }
 
-        return render(request, 'posts/forms.html', context)
+        return render(request, 'post/forms.html', context)
 
-    return redirect('posts:index')
+    return redirect('post:index')
 
 
 @login_required
@@ -120,7 +120,7 @@ def delete(request, post_id):
     if post.user == request.user:
         post.delete()
 
-    return redirect('posts:index')
+    return redirect('post:index')
 
 
 @login_required
@@ -134,7 +134,7 @@ def like(request, post_id):
     else:
         post.like_users.add(user)
 
-    return redirect('posts:index')
+    return redirect('post:index')
 
 
 def search(request):
@@ -146,4 +146,4 @@ def search(request):
         'posts': posts,
     }
 
-    return render(request, 'posts/index.html', context)
+    return render(request, 'post/index.html', context)

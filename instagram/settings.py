@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.kakao',
     'user',
-    'posts',
+    'post',
     'imagekit',
     'bootstrap4',
     'bootstrap_pagination',
