@@ -1,4 +1,4 @@
-# Clone Project: media-instagram
+# Project: media-instagram
 
 ## Update session
 
