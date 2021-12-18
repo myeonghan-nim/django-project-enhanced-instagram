@@ -1,12 +1,12 @@
-# Project: media-instagram
+# Project: media added instagram
 
-## Update session
+## update session
 
 ```python
 from django.contrib.auth import update_session_auth_hash
 ```
 
-## Search DB (feat.ORM)
+## search data with ORM
 
 ```python
 from django.db.models import Q
