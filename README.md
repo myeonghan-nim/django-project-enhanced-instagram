@@ -1,4 +1,4 @@
-# Project: advanced instagram
+# Project: enhanced instagram
 
 ## update session
 
