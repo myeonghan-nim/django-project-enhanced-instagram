@@ -5,4 +5,4 @@ django-bootstrap4==3.0.1
 django-imagekit==4.0.2
 Pillow==10.3.0
 pipdeptree==2.1.0
-setuptools==65.5.1
+setuptools==70.0.0
